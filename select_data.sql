@@ -47,3 +47,32 @@ from (
 	order by last_name
 )
 limit 5 offset 5;
+
+select * from usr where birth_date > '2005-01-01'::timestamp;
+
+select first_name, last_name, birth_date
+from usr
+order by birth_date desc;
+
+select * from usr
+where birth_date >= '2003-01-01'::timestamp and birth_date <= '2008-12-31'::timestamp;
+
+select * from usr
+where birth_date >= '2007-01-01'::timestamp and birth_date <= '2007-12-31'::timestamp
+order by last_name;
+
+select first_name, last_name, to_char(birth_date, 'DD.MM.YYYY') as birthday
+from usr
+where to_char(birth_date, 'YYYY') = '2007'
+order by birth_date;
+
+select * from usr
+where birth_date::time between '12:00:00' and '12:59:59'
+order by birth_date desc;
+
+select * from usr
+where age(birth_date) > interval '18y';
+
+select * from usr
+where extract(isodow from birth_date) between 6 and 7
+order by birth_date desc
