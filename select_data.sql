@@ -76,3 +76,8 @@ where age(birth_date) > interval '18y';
 select * from usr
 where extract(isodow from birth_date) between 6 and 7
 order by birth_date desc
+
+select first_name, last_name
+from usr
+where payment IS NULL
+order by last_name, first_name;
