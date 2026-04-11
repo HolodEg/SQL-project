@@ -81,3 +81,52 @@ select first_name, last_name
 from usr
 where payment IS NULL
 order by last_name, first_name;
+
+select * from usr
+where last_name like 'Р%'
+order by last_name, first_name;
+
+select first_name, last_name
+from usr
+where e_mail like '%mail.ru'
+order by last_name, first_name;
+
+select first_name, last_name
+from usr
+where length(first_name) = 4
+order by last_name, first_name;
+
+select *
+from usr
+where age(birth_date) > interval'18y' and
+id >= 100
+order by birth_date;
+
+select *
+from usr
+where payment not between -100000 and 100000
+order by payment;
+
+select first_name, last_name, sign(payment) as sign_payment
+from usr
+order by sign_payment;
+
+select id, e_mail
+from usr
+where id%3 = 0;
+
+select count(*) as user20
+from usr
+where age(birth_date) < interval'20y';
+
+select sum(payment) as minus
+from usr
+where payment < 0;
+
+select avg(payment) as avg_positive_payment
+from usr
+where payment > 0;
+
+select *
+from usr
+where payment = (select max(payment) from usr);
