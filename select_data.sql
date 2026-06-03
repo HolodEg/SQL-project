@@ -130,3 +130,21 @@ where payment > 0;
 select *
 from usr
 where payment = (select max(payment) from usr);
+
+select first_name, middle_name, last_name from usr where role_name in (select
+role_name from role_permission where permission_id in (select id from
+permission where name='view'))
+and
+role_name in (select
+role_name from role_permission where permission_id in (select id from
+permission where name='edit'));
+
+select first_name, middle_name, last_name from usr where role_name in (select
+role_name from role_permission where permission_id in (select id from
+permission where name='view'))
+or
+role_name in (select
+role_name from role_permission where permission_id in (select id from
+permission where name='edit'));
+
+select * from groups where course = 1;
