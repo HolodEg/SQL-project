@@ -46,3 +46,46 @@ permission_id smallserial not null
 
 ALTER TABLE usr
     ADD PRIMARY KEY (id);
+
+alter table usr add constraint FK_USR_ROLE foreign key (role_name) references
+role;
+
+alter table role_permission
+add constraint FK_ROLE_PERMISSION_ROLE 
+foreign key (role_name)
+references role;
+
+alter table role_permission
+add constraint FK_ROLE_PERMISSION_PERMISSION
+foreign key (permission_id)
+references permission;
+
+create table department(
+id smallserial primary key,
+name varchar(30) not null
+);
+
+create table position(
+id smallserial primary key,
+name varchar(30) not null
+);
+
+create table university_member(
+id smallserial primary key,
+user_id bigint references usr,
+department_id smallint references department,
+position_id smallint references position
+);
+
+create table groups(
+id smallserial primary key,
+name varchar(30) not null,
+course smallint not null
+);
+
+create table group_member(
+id smallserial primary key,
+university_member_id smallint references university_member,
+group_id smallint references groups,
+group_leader char(1)
+);
